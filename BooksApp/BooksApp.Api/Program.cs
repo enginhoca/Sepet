@@ -11,15 +11,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<BooksAppDbContext>(options=>options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
+builder.Services.AddDbContext<BooksAppDbContext>(options => options.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection")));
 
 builder.Services.AddScoped<ICategoryRepository, EfCoreCategoryRepository>();
 builder.Services.AddScoped<IBookRepository, EfCoreBookRepository>();
 builder.Services.AddScoped<IAuthorRepository, EfCoreAuthorRepository>();
+builder.Services.AddScoped<ICartRepository, EfCoreCartRepository>();
+builder.Services.AddScoped<ICartItemRepository, EfCoreCartItemRepository>();
+builder.Services.AddScoped<IOrderRepository, EfCoreOrderRepository>();
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<ICartItemService, CartItemService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 builder.Services.AddScoped<IImageHelper, ImageHelper>();
 
